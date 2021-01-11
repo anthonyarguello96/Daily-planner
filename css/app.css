@@ -1,0 +1,32 @@
+
+*{
+  margin:0;
+  padding: 0;
+}
+
+
+body{
+  width: 100vw;
+  margin:0;
+}
+
+
+
+.done{
+  text-decoration: line-through;
+}
+
+
+.container{
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15em 10em 15em 10em;
+}
+
+
+.inputField-addBtn-container{
+  display: flex;
+  flex-flow: row;
+}
