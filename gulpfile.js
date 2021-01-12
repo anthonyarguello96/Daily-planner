@@ -7,16 +7,19 @@ const webpackConfig = require('./webpack.config.js');
 const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
+const eslint = require('gulp-eslint');
 
 
-function watch (){
+function watch() {
   browserSync.init({
-    server:'./dist'
+    server: './dist',
   });
   gulp.watch('sass/**/*.scss', gulp.parallel(styles));
   gulp.watch('sass/**/*.scss').on('change', browserSync.reload);
   gulp.watch('index.html', gulp.parallel(copyHtml));
   gulp.watch('*.html').on('change', browserSync.reload);
+  gulp.watch('js/**/*.js', gulp.series(lint, scripts));
+  gulp.watch('js/**/*.js').on('change', browserSync.reload);
 }
 
 function copyHtml(cb) {
@@ -41,6 +44,14 @@ function styles(cb) {
 }
 
 
+function lint(cb) {
+  gulp.src(['js/**/*.js'])
+      .pipe(eslint())
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError());
+  cb();
+}
+
 function scripts() {
   return gulp.src('js/**/*.js')
       .pipe(sourcemaps.init())
@@ -52,4 +63,4 @@ function scripts() {
       .pipe(gulp.dest('dist/js'));
 }
 
-exports.default = series(styles, copyHtml, scripts ,watch);
+exports.default = series(styles, copyHtml, lint, scripts, watch);

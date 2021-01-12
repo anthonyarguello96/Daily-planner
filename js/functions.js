@@ -10,4 +10,4 @@ export const addToDo = (inputF, container)=>{
   toDo.addEventListener('dblclick', ()=>{
     container.removeChild(toDo);
   });
-}
+};
