@@ -5,12 +5,30 @@ const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const webpackConfig = require('./webpack.config.js');
 const sourcemaps = require('gulp-sourcemaps');
+const sass = require('gulp-sass');
+
 
 function watch (){
   browserSync.init({
     server:'./'
   });
 }
+
+
+function styles(cb) {
+  gulp.src('sass/**/*.scss')
+      .pipe(sass({outputStyle: 'compressed'}))
+      .on('error', sass.logError)
+      // .pipe(
+      //     autoprefixer({
+      //       browserlist: ['last 2 versions'],
+      //     })
+      // )
+      .pipe(gulp.dest('./dist/css'))
+      .pipe(browserSync.stream());
+  cb();
+}
+
 
 function scripts() {
   return gulp.src('js/**/*.js')
@@ -23,4 +41,4 @@ function scripts() {
       .pipe(gulp.dest('dist/js'));
 }
 
-exports.default = series(scripts ,watch);
+exports.default = series(styles, scripts ,watch);
