@@ -10,7 +10,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: [
-            ['@babel/preset-env', { targets: "defaults" }],
+            ['@babel/preset-env', {targets: 'defaults'}],
           ],
         },
       },

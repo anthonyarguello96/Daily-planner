@@ -8,6 +8,8 @@ const sourcemaps = require('gulp-sourcemaps');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const eslint = require('gulp-eslint');
+const imagemin = require('gulp-imagemin');
+const imageminPngquant = require('imagemin-pngquant');
 
 
 function watch() {
@@ -26,6 +28,16 @@ function copyHtml(cb) {
   gulp.src('index.html')
       .pipe(gulp.dest('dist'));
   cb();
+}
+
+
+function copyImages() {
+  return gulp.src('img/*')
+      .pipe(imagemin({
+        progressive: true,
+        use: imageminPngquant,
+      }))
+      .pipe(gulp.dest('dist/img'));
 }
 
 
@@ -63,4 +75,5 @@ function scripts() {
       .pipe(gulp.dest('dist/js'));
 }
 
-exports.default = series(styles, copyHtml, lint, scripts, watch);
+
+exports.default = series(styles, copyHtml, copyImages, lint, scripts, watch);
