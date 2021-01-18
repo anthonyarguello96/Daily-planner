@@ -22,7 +22,10 @@ function watch() {
   gulp.watch('*.html').on('change', browserSync.reload);
   gulp.watch('js/**/*.js', gulp.series(lint, scripts));
   gulp.watch('js/**/*.js').on('change', browserSync.reload);
+  gulp.watch('img/**/*.jpg', gulp.series(copyImages));
+  gulp.watch('img/**/*').on('change', browserSync.reload);
 }
+
 
 function copyHtml(cb) {
   gulp.src('index.html')
