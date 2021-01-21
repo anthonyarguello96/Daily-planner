@@ -10,17 +10,17 @@ const autoprefixer = require('gulp-autoprefixer');
 const eslint = require('gulp-eslint');
 const imagemin = require('gulp-imagemin');
 const imageminPngquant = require('imagemin-pngquant');
-
+const cache = require('gulp-cache');
 
 function watch() {
   browserSync.init({
     server: './dist',
   });
   gulp.watch('sass/**/*.scss', gulp.parallel(styles));
-  gulp.watch('sass/**/*.scss').on('change', browserSync.reload);
+  gulp.watch('sass/**/*.scss').on('change', clearCache, browserSync.reload);
   gulp.watch('index.html', gulp.parallel(copyHtml));
   gulp.watch('*.html').on('change', browserSync.reload);
-  gulp.watch('js/**/*.js', gulp.series(lint, scripts));
+  gulp.watch('js/**/*.js', gulp.series(lint, scripts, clearCache));
   gulp.watch('js/**/*.js').on('change', browserSync.reload);
   gulp.watch('img/**/*.jpg', gulp.series(copyImages));
   gulp.watch('img/**/*').on('change', browserSync.reload);
@@ -31,6 +31,10 @@ function copyHtml(cb) {
   gulp.src('index.html')
       .pipe(gulp.dest('dist'));
   cb();
+}
+
+function clearCache(done) {
+  return cache.clearAll(done);
 }
 
 
@@ -45,7 +49,7 @@ function copyImages() {
 
 
 function styles(cb) {
-  gulp.src('sass/**/*.scss')
+  return gulp.src('sass/**/*.scss')
       .pipe(sass({outputStyle: 'compressed'}))
       .on('error', sass.logError)
       .pipe(
@@ -55,7 +59,7 @@ function styles(cb) {
       )
       .pipe(gulp.dest('./dist/css'))
       .pipe(browserSync.stream());
-  cb();
+  // cb();
 }
 
 
@@ -79,4 +83,5 @@ function scripts() {
 }
 
 
-exports.default = series(styles, copyHtml, copyImages, lint, scripts, watch);
+exports.default = series(clearCache, styles, copyHtml, copyImages,
+    lint, scripts, watch);
