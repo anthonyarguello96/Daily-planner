@@ -9,8 +9,9 @@ const spread = [...parallax];
 
 // Add to-do
 addBtn.addEventListener('click', function() {
-  lib.addToDo(inputField, toDoContainer);
+  new lib.Item(inputField.value, toDoContainer);
 });
+
 
 //  Parallax effect
 window.addEventListener('scroll', function() {

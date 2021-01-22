@@ -83,12 +83,16 @@ background-color: rgba(0, 0, 0, 0.3);
   cursor:pointer;
 }
 
+#add-to-do:hover{
+  opacity: 0.5;
+}
 
-.container .to-do-items{
+
+.container .to-do-items-container{
   font-size: 40px;
   margin-top: 8%;
   background-color: white;
-  width: 80%;
+  width: 75%;
   display: flex;
   flex-flow: column;
   // justify-content: center;
@@ -97,8 +101,67 @@ background-color: rgba(0, 0, 0, 0.3);
       padding: 4% 0 4% 0;
 }
 
+
+.container .item-box{
+  // padding: 0.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+
 .item-input{
-  disabled;
+  background: none;
+  outline: none;
+  color: black;
+  border: none;
+  width: 70%;
+  font-size: 1.2rem;
+  text-align: center;
+  // overflow: scroll;
+}
+
+
+.editBtn{
+  font-size: 1.3rem;
+  height: 30px;
+  width: 30px;
+  border-radius: 25px;
+  outline: none;
+  margin: 0.25px;
+  border: none;
+  background-color: #B1DBEC;
+  cursor:pointer;
+  margin: 2px;
+}
+
+
+.priorityBtn{
+  font-size: 1.3rem;
+  height: 30px;
+  width: 30px;
+  border-radius: 25px;
+  outline: none;
+  margin: 0.25px;
+  border: none;
+  background-color: #B1DBEC;
+  cursor:pointer;
+  margin: 2px;
+}
+
+
+.removeBtn{
+  font-size: 1.3rem;
+  height: 30px;
+  width: 30px;
+  border-radius: 25px;
+  outline: none;
+  margin: 0.25px;
+  border: none;
+  background-color: #B1DBEC;
+  cursor:pointer;
+  margin: 2px;
 }
 
 .divs{
