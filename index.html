@@ -6,8 +6,8 @@
        <link rel="stylesheet" href="/css/app.css">
        <link rel="shortcut icon" href="#">
        <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://use.typekit.net/mbr8fgy.css">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://use.typekit.net/mbr8fgy.css">
     <title>To-do list</title>
   </head>
   <body>
@@ -15,16 +15,19 @@
     </div>
     <div class="div-2 divs">
       <div class="container">
-        <div></div>
-          <h2>To-do:</h2>
+        <h2>To-do:</h2>
           <div class="inputField-addBtn-container">
-            <input type="text" id = 'inputField'><button id ='add-to-do'>+</button>
+            <input type="text" onfocus=this.value='' id = 'inputField'><button id ='add-to-do'>+</button>
           </div>
         <div class="to-do-items-container" id= 'to-do-items-container'>
         </div>
       </div>
-      <div class="priorities">
+      <div id = "priorities" class="priorities">
         <h2>Priorities</h2>
+        <span id="priorities-legend">First things first!<br/>Let's prioritize out to dos so we know where to start...</span>
+        <div class="priorities-box" id="priorities-box">
+          <ol id="priorities-list"></ol>
+        </div>
       </div>
     </div>
     <div class="div-3 divs img-div">
