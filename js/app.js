@@ -8,7 +8,8 @@ const parallax = document.getElementsByClassName('img-div');
 const spread = [...parallax];
 const prioritiesContainer = document.getElementById('priorities-box');
 const prioritiesList = document.getElementById('priorities-list');
-
+// const entries = document.getElementsByClassName('item-input');
+// console.log(entries);
 // Add to-do
 addBtn.addEventListener('click', function() {
   new lib.Item(inputField.value, toDoContainer, prioritiesList, inputField);
